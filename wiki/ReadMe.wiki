@@ -1,0 +1,37 @@
+#summary Coordinates Form Field for Django Admin
+#labels Featured,Phase-Implementation,Phase-Design
+
+= Introduction =
+
+This is the first approach to give admins a nice interface for geographical
+data. With the included CoordinatesFormField it is possible to add and edit
+GPS coordinates using one of the popular map services from Google and Yahoo.
+
+Since most of the work is done via Javascript it has a nice fallback with
+a default TextField. The javascript code is written with generalisation in
+mind to handle the differences between the map systems.
+
+= Howto use CoordinatesField in your own django app =
+
+  # Copy "coordinates_form.html" to a folder where it can be found by the template loader (hint: ``TEMPLATE_DIRS`` in your settings.py)
+  # Set in your settings.py:
+    * ``MAP_API`` to "google", "yahoo" or "yahooflash"
+    * ``MAP_API_KEY`` to the API key provided by Google or Yahoo
+  # Copy field.py to your django application folder, next to its models.py file
+  # At the top of your applications's models.py file add the following line: {{{ from field import CoordinatesField }}}
+  # Change the model of one of the form fields of you model, for example:
+{{{
+gps = models.CharField(maxlength=75) #OLD
+gps = CoordinatesField() #NEW
+}}}
+
+
+
+
+
+
+
+
+
+
+
